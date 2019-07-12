@@ -71,8 +71,8 @@ class DB {
     return false;
   }
 
-  public function get($table, $where, $order = null) {
-    return $this->action("SELECT *", $table, $where, $order);
+  public function get($table, $where) {
+    return $this->action("SELECT *", $table, $where);
   }
 
   public function getAID($where) {
