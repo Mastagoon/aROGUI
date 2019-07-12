@@ -12,7 +12,7 @@
 	<title>Trash Hima</title>
 </head>
 <body>
-	<form action="submit.php">
+	<form method = "POST" action="submit.php">
 	  <div class="form-group">
 	    <label for="accountname">Account Name<span>*</span>:</label>
 	    <input type="text" class="form-control" id="accountname" name = "accountname" minlength = "4" maxlength = "23" required>
