@@ -75,6 +75,34 @@ class DB {
     return $this->action("SELECT *", $table, $where, $order);
   }
 
+  public function getAID($where) {
+	  return $this->action("SELECT [AID]", "[character].[dbo].[charinfo]", $where);
+  }
+
+  public function identity($status) {
+	$this->query("SET IDENTITY_INSERT".$status);
+  }
+
+  public function insertToMSSQL($table = "[nlogin].[dbo].[login]", $data = array()) {
+	if(count($data)) {
+		$keys = array_keys($data);
+		$values = null;
+		$i = 1;
+		foreach($data as $bit) {
+			$values .= '?';
+			if($i < count($data)) {
+				$values .= ', ';
+			}
+			$i++;
+		}
+		$sql = "INSERT INTO {$table} (" . implode (',',$keys) . ") VALUES ({$values})";
+		if(!$this->query($sql,$data)->error()) {
+			return true;
+		}
+	}
+	return false;
+}
+
   public function delete($table, $where){
     return $this->action("DELETE", $table, $where);
   }
