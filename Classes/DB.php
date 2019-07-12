@@ -54,7 +54,7 @@ class DB {
     return $this;
   }
 
-  public function action($action, $table, $where = array(), $order = 'ASC'){
+  public function action($action, $table, $where = array()){
     if(count($where) === 3){
       $operators = array('=', '>', '<', '>=', '<=');
       $field = $where[0];
@@ -62,7 +62,7 @@ class DB {
       $value = $where[2];
 
       if(in_array($operator, $operators)){
-        $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ? ORDER BY id {$order}";
+        $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
         if(!$this->query($sql, array($value))->error()){
           return $this;
         }
