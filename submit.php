@@ -10,7 +10,7 @@
 		$db = DB::getInstance();
 		$aid = $db->getAID("[charname]", "=", $charname);
 		$db->identity("ON");
-		$db->insertToMSSQL("[nlogin].[dbo].[login]", array(
+		$db->insert("[nlogin].[dbo].[login]", array(
 			"AID" => $aid,
 			"ID" => $accountname,
 			"passwd" => $password,
@@ -20,7 +20,7 @@
 			"regDate" => "getdate()",
 			"endblockdate" => NULL
 		));
-		$db->insertToMSSQL("[nlogin].[dbo].[account]", array(
+		$db->insert("[nlogin].[dbo].[account]", array(
 			"AID" => $aid,
 			"Name" => $accountnme,
 			"Adress" => "Tahadi",
